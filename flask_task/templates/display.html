@@ -1,8 +1,30 @@
 <html>
   <head>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+    </style>
     <body>
-        {{ data.Hospital }}
-      {{ record }}
+      <table style="width:100%; text-align: center;">
+        <tr style="text-decoration: underline;">
+          <th>Hospital</th>
+          <th>Specialist</th>
+          <th>Type</th>
+          <th>Location</th>
+        </tr>
+
+        {% for data in data %}
+          <tr>
+            <td>{{ data.Hospital }}</td>
+            <td>{{ data.Specialist }}</td>
+            <td>{{ data.Type }}</td>
+            <td>{{ data.Location }}</td>
+          </tr>
+        {% endfor %}
+      </table>
     </body>
   </head>
 </html>

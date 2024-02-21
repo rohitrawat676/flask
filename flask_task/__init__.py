@@ -1,6 +1,5 @@
 from flask import Flask
 from flask_task.users.routes import users
-# login_view = 'users.login'
 
 def create_app():
     
@@ -8,6 +7,6 @@ def create_app():
     
     from flask_task import users
     
-    app.register_blueprint(users)
+    app.register_blueprint(users, url_prefix="/data_display")
 
     return app

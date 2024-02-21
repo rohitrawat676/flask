@@ -3,15 +3,27 @@ from flask import render_template, url_for, flash, redirect, request, Blueprint
 users = Blueprint('users', __name__)
 
 @users.route("/display")
-
+@users.route("/")
 def display():
     
-    data = {
+    data = [{
         'Hospital': "Flex",
         'Specialist' : "Cancer",
-        'type': "Goverment"  
+        'Type': "Goverment", 
+        'Location': "Noida" 
+    },
+    {
+        'Hospital': "Max",
+        'Specialist' : "Heart Attack",
+        'Type': "Private", 
+        'Location': "Dehradun" 
+    },
+    {
+        'Hospital': "AIIMS",
+        'Specialist' : "Urologst",
+        'Type': "Semi-Goverment", 
+        'Location': "Delhi" 
     }
+    ]
     
-    record = "recards"
-
-    return render_template('display.html', title='Display', data=data, record = record)
+    return render_template('display.html', title='Display', data=data)

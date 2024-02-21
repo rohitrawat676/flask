@@ -1,5 +1,5 @@
 from flask_task import create_app
-from flask_task import users
+from flask_task.users.routes import users
 
 app = create_app()
 

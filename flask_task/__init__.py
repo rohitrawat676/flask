@@ -1,7 +1,6 @@
 from flask import Flask
 
-login_view = 'users.login'
-login_message_category = 'info'
+# login_view = 'users.login'
 
 def create_app():
     app = Flask(__name__)

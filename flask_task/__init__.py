@@ -12,6 +12,8 @@ def create_app(config_class=Config):
     app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
     app.config.from_object(Config)
     
+    app.config['SECRET_KEY']
+    
     app.app_context().push()
     
     from flask_task import users

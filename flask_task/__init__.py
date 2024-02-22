@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_task.users.routes import users
-
+from os import environ
 
 def create_app():
     
@@ -8,7 +8,7 @@ def create_app():
     
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
-   
+
     app.app_context().push()
     
     from flask_task import users

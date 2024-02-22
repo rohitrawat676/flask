@@ -1,2 +1,4 @@
 venv3.10
 __pycache__
+.env
+config.py

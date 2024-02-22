@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect, request, Blueprint
+from flask import render_template, url_for, Flask, redirect, request, Blueprint
 
 users = Blueprint('users', __name__)
 
@@ -25,5 +25,5 @@ def display():
         'Location': "Delhi" 
     }
     ]
-    
+
     return render_template('display.html', title='Display', data=data)

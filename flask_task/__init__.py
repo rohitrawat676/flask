@@ -14,8 +14,6 @@ def create_app(config_class=Config):
     
     app.app_context().push()
     
-    SECRET_KEY = app.config['SECRET_KEY']
-    
     from flask_task import users
     
     app.register_blueprint(users, url_prefix="/data_display")

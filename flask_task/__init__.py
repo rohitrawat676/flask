@@ -6,14 +6,15 @@ import os
 def create_app(config_class=Config):
     
     app = Flask(__name__)
+    app.config.from_object(Config)
     
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
     app.config.from_object(Config)
     
-    print(app.config.get("DATABASE_URI"))
-    
     app.app_context().push()
+    
+    SECRET_KEY = app.config['SECRET_KEY']
     
     from flask_task import users
     

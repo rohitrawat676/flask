@@ -11,6 +11,7 @@ def display():
         'Specialist' : "Cancer",
         'Type': "Goverment", 
         'Location': "Noida" 
+        
     },
     {
         'Hospital': "Max",

@@ -1,7 +1,5 @@
 from flask_task import create_app
 from flask_sqlalchemy import SQLAlchemy
-import os
-
 
 
 app = create_app()

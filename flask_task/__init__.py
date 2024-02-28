@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_task.users.routes import users
 from flask.config import Config
-import os
 
 def create_app(config_class=Config):
     

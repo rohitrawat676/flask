@@ -1,4 +1,4 @@
-venv3.10
-__pycache__
-dev.env
-stage.env
+venv3.10/
+*.env
+flask_task/__pycache__/
+flask_task/users/__pycache__/

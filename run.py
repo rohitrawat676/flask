@@ -12,9 +12,6 @@ def run_flask(env):
 
     load_dotenv(env)
 
-    print(os.environ.get('HOSTNAME'))
-    print(os.environ.get('PORT'))
-
     app.run(debug=True, host=os.environ.get(
         'HOSTNAME'), port=os.environ.get('PORT'))
 

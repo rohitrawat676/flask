@@ -18,6 +18,3 @@ class Config:
     DEV_PORT = config['DEV_PORT']
     STAGE_HOSTNAME = config['STAGE_HOSTNAME']
     STAGE_PORT = config['STAGE_PORT']
-
-
-print(Config.__doc__)

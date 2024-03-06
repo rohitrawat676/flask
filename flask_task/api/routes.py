@@ -1,15 +1,11 @@
 from flask import render_template, url_for, Flask, redirect, request, Blueprint, jsonify
 
-health = Blueprint('health', __name__)
 
-api_test1 = Blueprint('api_test1', __name__)
+api = Blueprint('api_test1', __name__)
 
 
-@health.route('/health', methods=['GET'])
+@api.route('/health', methods=['GET'])
 def api_health():
-
-    # success = {'success': {"data": "Success", "status": 200}}
-    # failure = {'failure': {"error": "Error Occur", "status": 500}}
 
     try:
         result = {"data": "Sbi Bank", "status": 200}
@@ -22,7 +18,7 @@ def api_health():
         return jsonify({'error': str(e)}), 500
 
 
-@api_test1.route('/test1', methods=['POST'])
+@api.route('/test1', methods=['POST'])
 def api_test():
 
     try:

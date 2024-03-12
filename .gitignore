@@ -3,5 +3,5 @@ venv3.10/
 flask_task/__pycache__/
 flask_task/users/__pycache__/
 flask_task/api/__pycache__/
-flask_task/authentication/__pycache__/
 flask_task/utilities/logger/logger.py
+flask_task/authentication/__pycache__/

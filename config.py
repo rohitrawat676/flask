@@ -1,20 +1,25 @@
-import os
 from os import environ as env
 from dotenv import load_dotenv, dotenv_values
 
 
-class Config:
+class BaseConfig:
+    DEBUG = True
+    TESTING = False
 
-    ''' This is a Config class which access enviroment variable from dev.env & stage.env file '''
 
-    config = {
-        **dotenv_values("dev.env"),
-        **dotenv_values("stage.env"),
-    }
+class DevelopmentConfig(BaseConfig):
 
-    SECRET_KEY = os.environ.get('SECRET_KEY')
-    DATABASE_URI = os.environ.get('DATABASE_URI')
-    DEV_HOSTNAME = config['DEV_HOSTNAME']
-    DEV_PORT = config['DEV_PORT']
-    STAGE_HOSTNAME = config['STAGE_HOSTNAME']
-    STAGE_PORT = config['STAGE_PORT']
+    load_dotenv('dev.env')
+
+    HOSTNAME = env.get('DEV_HOSTNAME')
+    PORT = env.get('DEV_PORT')
+    SQLALCHEMY_DATABASE_URI = env.get('SQLALCHEMY_DATABASE_URI_DEV')
+
+
+class StageConfig(BaseConfig):
+
+    load_dotenv('stage.env')
+
+    HOSTNAME = env.get('STAGE_HOSTNAME')
+    PORT = env.get('STAGE_PORT')
+    SQLALCHEMY_DATABASE_URI = env.get('SQLALCHEMY_DATABASE_URI_STAGE')

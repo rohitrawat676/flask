@@ -1,57 +1,40 @@
 import sys
 import os
 from dotenv import load_dotenv, dotenv_values
+from os import environ
 from flask_task import create_app
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from flask_task.utilities.logger import logger_log
+from flask_task.models import User, db
 
 app = create_app()
 
-db = SQLAlchemy(app)
+logger_log()
 
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=False, nullable=False)
-    email = db.Column(db.String(120), unique=False, nullable=False)
-    created_at = db.Column(db.DateTime, nullable=False,
-                           default=datetime.utcnow)
-
-
-db.create_all()
-
-# new_user = User(username='rohitrawat676', email='rohitrawat676@gmail.com')
-# db.session.add(new_user)
-# db.session.commit()
-
-# users = User.query.all()
-# for user in users:
-#     print(user.username, user.email)
-
-# user = User.query.filter_by(username='rohitrawat676').first()
-# user.email = 'rohitrawat2089@example.com'
-# db.session.commit()
-
-# user = User.query.filter_by(username='rohitrawat676').first()
-# db.session.delete(user)
-# db.session.commit()
-
-
-def run_flask(env):
+def run_flask():
     ''' This is a flask enviroment selection method of enviroment variable from dev.env & stage.env file '''
 
-    if env == 'dev.env' or env == 'stage.env':
-        load_dotenv(env)
-        app.run(debug=True, host=os.environ.get(
-            'HOSTNAME'), port=os.environ.get('PORT'))
-    else:
-        print("Please specify environment. Usage: python run.py <environment> like dev.env or stage.env")
+    hostname = app.config['HOSTNAME']
+    env_port = app.config['PORT']
+    db = SQLAlchemy(app)
+
+    db.create_all()
+
+    app.run(debug=True, host=hostname, port=env_port)
 
 
 if __name__ == '__main__':
 
     if len(sys.argv) > 1:
-        environment = sys.argv[1]
-        run_flask(environment)
+        if sys.argv[1] == 'dev.env':
+            app.config.from_object('config.DevelopmentConfig')
+            run_flask()
+        elif sys.argv[1] == 'stage.env':
+            app.config.from_object('config.StageConfig')
+            run_flask()
+        else:
+            print("Please specify environment. Usage: python run.py <environment>")
     else:
         print("Please specify environment. Usage: python run.py <environment>")

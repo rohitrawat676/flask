@@ -1,9 +1,8 @@
-import sys
 from flask import Flask
 from flask_task.users.controller import users
 from flask_task.api.controller import api
 from flask_task.authentication.controller import auth
-from flask_sqlalchemy import SQLAlchemy
+from flask_task.database.controller import db
 
 
 def create_app():
@@ -14,6 +13,7 @@ def create_app():
     app.register_blueprint(users, url_prefix="/data_display")
     app.register_blueprint(api, url_prefix="/api")
     app.register_blueprint(auth, url_prefix="/auth")
+    app.register_blueprint(db, url_prefix="/db")
 
     app.app_context().push()
 

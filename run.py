@@ -6,9 +6,10 @@ from flask_task import create_app
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_task.utilities.logger import logger_log
-from flask_task.models import User, db
+from flask_task.models import db
 
 app = create_app()
+
 
 logger_log()
 
@@ -18,9 +19,8 @@ def run_flask():
 
     hostname = app.config['HOSTNAME']
     env_port = app.config['PORT']
-    db = SQLAlchemy(app)
 
-    db.create_all()
+    db.init_app(app)
 
     app.run(debug=True, host=hostname, port=env_port)
 

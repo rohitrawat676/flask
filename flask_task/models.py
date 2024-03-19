@@ -10,6 +10,6 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=False, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow)
-    
+
     # def __repr__(self):
     #     return '<User %r>' % self.username

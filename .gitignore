@@ -3,3 +3,8 @@ venv3.10/
 flask_task/__pycache__/
 flask_task/users/__pycache__/
 flask_task/api/__pycache__/
+flask_task/database/__pycache__/
+flask_task/utilities/logger/__pycache__/
+flask_task/utilities/logger/app.txt
+flask_task/authentication/__pycache__/
+flask/instance/*.db

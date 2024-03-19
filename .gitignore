@@ -8,3 +8,4 @@ flask_task/utilities/logger/__pycache__/
 flask_task/utilities/logger/app.txt
 flask_task/authentication/__pycache__/
 flask/instance/*.db
+flask/__pycache__/

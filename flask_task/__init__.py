@@ -3,6 +3,7 @@ from flask_task.users.controller import users
 from flask_task.api.controller import api
 from flask_task.authentication.controller import auth
 from flask_task.database.controller import db
+from flask_task.smtp.controller import smtpmail
 
 
 def create_app():
@@ -14,6 +15,7 @@ def create_app():
     app.register_blueprint(api, url_prefix="/api")
     app.register_blueprint(auth, url_prefix="/auth")
     app.register_blueprint(db, url_prefix="/db")
+    app.register_blueprint(smtpmail, url_prefix="/smtp")
 
     app.app_context().push()
 

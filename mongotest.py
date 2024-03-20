@@ -8,10 +8,14 @@ collection = db["rohit"]
 
 data = [
     {"name": "John Doe", "email": "john.doe@example.com", "age": 30},
-    {"name": "John Doe", "email": "john.doe@example.com", "age": 30},
-    {"name": "John Doe", "email": "john.doe@example.com", "age": 30}
+    {"name": "John Doe", "email": "john.doe@example.com", "age": 39},
+    {"name": "John Doe", "email": "john.doe@example.com", "age": 40}
 ]
 
-result = collection.insert_many(data)
+filter_criteria = {"age": {"$lt": 37}}
+update_operation = {"$set": {"name": "rohit"}}
 
-print("Inserted ID:", result.inserted_id)
+result = collection.update_many(filter_criteria, update_operation)
+
+print("Matched:", result.matched_count)
+print("Modified:", result.modified_count)

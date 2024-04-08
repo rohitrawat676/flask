@@ -3,23 +3,28 @@ from dotenv import load_dotenv, dotenv_values
 
 
 class BaseConfig:
+
+    def __init__(self, env):
+        self.env = env
+
+    if (env == 'dev.env'):
+        load_dotenv('dev.env')
+    else:
+        load_dotenv('stage.env')
+
     DEBUG = True
     TESTING = False
 
+    HOSTNAME = env.get('HOSTNAME')
+    PORT = env.get('PORT')
+    SQLALCHEMY_DATABASE_URI = env.get('SQLALCHEMY_DATABASE_URI')
 
-class DevelopmentConfig(BaseConfig):
+    MYSQL_HOST = env.get('MYSQL_HOST')
+    MYSQL_USER = env.get('MYSQL_USER')
+    MYSQL_PASSWORD = env.get('MYSQL_PASSWORD')
 
-    load_dotenv('dev.env')
+    MYSQL_DB = env.get('MYSQL_DB')
 
-    HOSTNAME = env.get('DEV_HOSTNAME')
-    PORT = env.get('DEV_PORT')
-    SQLALCHEMY_DATABASE_URI = env.get('SQLALCHEMY_DATABASE_URI_DEV')
-
-
-class StageConfig(BaseConfig):
-
-    load_dotenv('stage.env')
-
-    HOSTNAME = env.get('STAGE_HOSTNAME')
-    PORT = env.get('STAGE_PORT')
-    SQLALCHEMY_DATABASE_URI = env.get('SQLALCHEMY_DATABASE_URI_STAGE')
+    SENDER_PASSWORD = env.get('SENDER_PASSWORD')
+    SENDER_EMAIL = env.get('SENDER_EMAIL')
+    RECEIVER_EMAIL = env.get('RECEIVER_EMAIL')

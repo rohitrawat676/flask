@@ -1,4 +1,5 @@
 import json
+import logging
 from flask import jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_task.models import User
@@ -9,6 +10,9 @@ user_data = []
 
 
 def create_user():
+    '''Database Create User'''
+
+    logging.info('Database Create User')
 
     db.create_all()
 
@@ -28,6 +32,10 @@ def create_user():
 
 
 def get_user_by_username():
+    '''Filter Username User'''
+
+    logging.info('Filter Username User')
+
     users = User.query.filter_by(username='rohitrawat676').first()
     for user in users:
         user_data.append(

@@ -1,7 +1,11 @@
+import logging
 from flask import Blueprint, render_template
 
 
 def display():
+    '''Display JSON Data'''
+
+    logging.info('Display JSON Data')
 
     data = [{
         'Hospital': "Flex",

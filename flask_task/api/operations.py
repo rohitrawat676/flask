@@ -3,6 +3,7 @@ from flask import render_template, url_for, Flask, redirect, request, Blueprint,
 
 
 def api_health():
+    ''' This Is Get Api '''
     logging.info("This Is Get Api")
     try:
         result = {"data": "Sbi Bank", "status": 200}
@@ -17,6 +18,7 @@ def api_health():
 
 
 def api_test():
+    ''' This Is Post Api '''
     logging.info("This Is Get Api")
     try:
         request_data = request.get_json()

@@ -7,9 +7,9 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_task.utilities.logger import logger_log
 from flask_task.models import db
+import config
 
 app = create_app()
-
 
 logger_log()
 
@@ -29,10 +29,12 @@ if __name__ == '__main__':
 
     if len(sys.argv) > 1:
         if sys.argv[1] == 'dev.env':
-            app.config.from_object('config.DevelopmentConfig')
+            config.BaseConfig('dev')
+            app.config.from_object('config.BaseConfig')
             run_flask()
         elif sys.argv[1] == 'stage.env':
-            app.config.from_object('config.StageConfig')
+            config.BaseConfig('stage')
+            app.config.from_object('config.BaseConfig')
             run_flask()
         else:
             print("Please specify environment. Usage: python run.py <environment>")

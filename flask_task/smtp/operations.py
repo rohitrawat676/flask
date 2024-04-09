@@ -18,7 +18,7 @@ def send_email(sender_email: str, sender_password: str,
 
     '''
 
-    logging.info("SMTP Email send")
+    logging.info("SMTP Email Send")
 
     smtp_server = 'smtp.gmail.com'
     smtp_port = 587

@@ -1,9 +1,12 @@
 import logging
 from logging.handlers import RotatingFileHandler
 
+# Logger Initializing
+logger = logging.getLogger()
+
 
 def logger_log():
-    logger = logging.getLogger()
+    '''looger set up for tracking action or auditing'''
     logger.setLevel(logging.DEBUG)
 
     file_handler = logging.FileHandler('flask_task/utilities/logger/app.txt')
@@ -16,5 +19,5 @@ def logger_log():
     file_handler.setFormatter(formatter)
     stream_handler.setFormatter(formatter)
 
-    # logger.addHandler(file_handler)
+    logger.addHandler(file_handler)
     logger.addHandler(stream_handler)

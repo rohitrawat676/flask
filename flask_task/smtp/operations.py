@@ -1,9 +1,24 @@
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+import logging
 
 
-def send_email(sender_email, sender_password, receiver_email, subject, message):
+def send_email(sender_email: str, sender_password: str,
+               receiver_email: str, subject: str,
+               message: str) -> str:
+    '''
+    SMTP send email
+    @param sender_email: str
+    @param sender_password: str
+    @param receiver_email: str
+    @param subject: str
+    @param message: str
+    returns str
+
+    '''
+    # Logger info set for sending smtp email
+    logging.info("SMTP Email Send")
 
     smtp_server = 'smtp.gmail.com'
     smtp_port = 587
@@ -13,7 +28,7 @@ def send_email(sender_email, sender_password, receiver_email, subject, message):
 
     msg = MIMEMultipart()
     msg['From'] = f'{sender_name} <{sender_email}>'
-    msg['To'] = receiver_email
+    msg['To'] = ','.join([receiver_email])
     msg['Subject'] = subject
 
     msg.attach(MIMEText(message, 'plain'))
@@ -25,7 +40,7 @@ def send_email(sender_email, sender_password, receiver_email, subject, message):
 
         server.login(sender_email, sender_password)
 
-        server.sendmail(sender_email, receiver_email, msg.as_string())
+        server.sendmail(sender_email, msg['To'].split(','), msg.as_string())
         print('Email sent successfully!')
         return "Email sent successfully!"
     except smtplib.SMTPAuthenticationError:

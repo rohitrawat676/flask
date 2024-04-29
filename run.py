@@ -1,15 +1,11 @@
 import sys
-import os
-from dotenv import load_dotenv, dotenv_values
 from os import environ
 from flask_task import create_app
-from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
 from flask_task.utilities.logger import logger_log
 from flask_task.models import db
+from config import dev, stage
 
 app = create_app()
-
 
 logger_log()
 
@@ -28,13 +24,19 @@ def run_flask():
 if __name__ == '__main__':
 
     if len(sys.argv) > 1:
-        if sys.argv[1] == 'dev.env':
-            app.config.from_object('config.DevelopmentConfig')
-            run_flask()
-        elif sys.argv[1] == 'stage.env':
-            app.config.from_object('config.StageConfig')
-            run_flask()
-        else:
+
+        enviroment = ['alpha', 'dev', 'stage', 'prod']
+        flag = ""
+        for item in enviroment:
+            if sys.argv[1].lower() == item.lower():
+                env = globals()[sys.argv[1]]
+                app.config.from_object(env)
+                run_flask()
+                break
+            else:
+                flag = 1
+        if flag == 1:
             print("Please specify environment. Usage: python run.py <environment>")
+
     else:
         print("Please specify environment. Usage: python run.py <environment>")

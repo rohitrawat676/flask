@@ -30,7 +30,6 @@ if __name__ == '__main__':
         for item in enviroment:
             if sys.argv[1].lower() == item.lower():
                 env = globals()[sys.argv[1]]
-                print(env)
                 app.config.from_object(env)
                 run_flask()
                 break

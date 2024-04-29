@@ -4,9 +4,6 @@ from dotenv import load_dotenv
 
 class BaseConfig:
 
-    dotenv_path = 'stage.env'
-    load_dotenv(dotenv_path)
-
     DEBUG = True
     TESTING = False
     SENDER_EMAIL = os.environ.get('SENDER_EMAIL')
@@ -14,10 +11,11 @@ class BaseConfig:
     RECEIVER_EMAIL = os.environ.get('RECEIVER_EMAIL')
 
 
-class dev(BaseConfig):
+class dev:
 
-    dotenv_path = 'dev.env'
-    load_dotenv(dotenv_path)
+    load_dotenv('dev.env')
+
+    print("dev")
 
     DEBUG = True
     HOSTNAME = os.environ.get('HOSTNAME')
@@ -32,12 +30,11 @@ class dev(BaseConfig):
     RECEIVER_EMAIL = os.environ.get('RECEIVER_EMAIL')
 
 
-class stage(BaseConfig):
+class stage:
 
-    dotenv_path = 'stage.env'
-    load_dotenv(dotenv_path)
+    load_dotenv('stage.env')
 
-    print('stage fuck')
+    print("stage")
 
     HOSTNAME = os.environ.get('HOSTNAME')
     PORT = os.environ.get('PORT')

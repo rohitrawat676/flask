@@ -6,7 +6,7 @@ import logging
 
 def send_email(sender_email: str, sender_password: str,
                receiver_email: str, subject: str,
-               message: str):
+               message: str) -> str:
     '''
     SMTP send email
     @param sender_email: str
@@ -17,7 +17,7 @@ def send_email(sender_email: str, sender_password: str,
     returns str
 
     '''
-
+    # Logger info set for sending smtp email
     logging.info("SMTP Email Send")
 
     smtp_server = 'smtp.gmail.com'

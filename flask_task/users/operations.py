@@ -3,8 +3,9 @@ from flask import Blueprint, render_template
 
 
 def display():
-    '''Display JSON Data'''
+    '''Display JSON Data as Table'''
 
+    # Looger info set for display json data
     logging.info('Display JSON Data')
 
     data = [{

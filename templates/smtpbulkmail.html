@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.3/components/footers/footer-2/assets/css/footer-2.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flask Form</title>
+  </head>
+  <style></style>
+
+  <body>
+    <h1 style="text-align: center;" class="mt-2 mb-4">SMTP Mail</h1>
+    <form method="POST" class="text-center">
+      <button class="btn btn-primary">Send Bulk Email</button>
+    </form>
+
+    <form id="myForm" class="mt-4 container">
+      <div class="form-group">
+        <label for="id">Id:</label>
+        <input type="number" class="form-control mb-2" id="id" name="id" required />
+      </div>
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control mb-2" id="username" name="username" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control mb-2" id="email" name="email" required />
+      </div>
+      <button type="submit" class="btn btn-primary mt-2" onclick="submitForm()">Submit</button>
+      <button type="submit" class="btn btn-success mt-2" onclick="submitForm()">Delete</button>
+      <button type="submit" class="btn btn-danger mt-2" onclick="submitForm()">Updae</button>
+    </form>
+  </body>
+  <script>
+    function submitForm() {
+      var formData = {
+        id: $('#id').val(),
+        username: $('#username').val(),
+        email: $('#email').val()
+      }
+      $.ajax({
+        type: 'POST',
+        url: 'postapidata',
+        data: JSON.stringify(formData),
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function (data) {
+          $('#message').html('<div class="alert alert-success">' + data.message + '</div>')
+        },
+        error: function () {
+          $('#message').html('<div class="alert alert-danger">Error submitting form.</div>')
+        }
+      })
+    }
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</html>

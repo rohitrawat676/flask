@@ -1,9 +1,12 @@
 import logging
 from flask import render_template, url_for, Flask, redirect, request, Blueprint, jsonify
+from flask_task.models import db, ApiPost
 
 
 def api_health():
     ''' This Is Get Api '''
+
+    # Logger info set for get api
     logging.info("This Is Get Api")
     try:
         result = {"data": "Sbi Bank", "status": 200}
@@ -19,6 +22,8 @@ def api_health():
 
 def api_test():
     ''' This Is Post Api '''
+
+    # Logger info set for post api
     logging.info("This Is Get Api")
     try:
         request_data = request.get_json()
